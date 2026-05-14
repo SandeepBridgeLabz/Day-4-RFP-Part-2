@@ -8,30 +8,30 @@ public class SnakeAndLadder {
 
         int playerPosition = 0;
 
-        int dieNumber = (int) (Math.floor(Math.random() * 10) % 6) + 1;
+        while (playerPosition < 100) {
 
-        int option = (int) (Math.floor(Math.random() * 10) % 3);
+            int dieNumber = (int) (Math.floor(Math.random() * 10) % 6) + 1;
 
-        switch (option) {
+            int option = (int) (Math.floor(Math.random() * 10) % 3);
 
-            case NO_PLAY:
-                System.out.println("No Play");
-                break;
+            switch (option) {
 
-            case LADDER:
-                playerPosition += dieNumber;
-                System.out.println("Ladder");
-                break;
+                case NO_PLAY:
+                    break;
 
-            case SNAKE:
-                playerPosition -= dieNumber;
-                System.out.println("Snake");
-                break;
+                case LADDER:
+                    playerPosition += dieNumber;
+                    break;
+
+                case SNAKE:
+                    playerPosition -= dieNumber;
+                    break;
+            }
+
+            if (playerPosition < 0)
+                playerPosition = 0;
         }
 
-        if (playerPosition < 0)
-            playerPosition = 0;
-
-        System.out.println("Player Position: " + playerPosition);
+        System.out.println("Player reached position 100");
     }
 }
