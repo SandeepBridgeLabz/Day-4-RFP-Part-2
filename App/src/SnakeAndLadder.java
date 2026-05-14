@@ -20,7 +20,10 @@ public class SnakeAndLadder {
                     break;
 
                 case LADDER:
-                    playerPosition += dieNumber;
+
+                    if (playerPosition + dieNumber <= 100)
+                        playerPosition += dieNumber;
+
                     break;
 
                 case SNAKE:
@@ -32,6 +35,6 @@ public class SnakeAndLadder {
                 playerPosition = 0;
         }
 
-        System.out.println("Player reached position 100");
+        System.out.println("Player won the game");
     }
 }
