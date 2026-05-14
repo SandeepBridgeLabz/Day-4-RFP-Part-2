@@ -1,45 +1,58 @@
 public class SnakeAndLadder {
 
-    public static final int NO_PLAY = 0;
-    public static final int LADDER = 1;
-    public static final int SNAKE = 2;
+    static final int NO_PLAY = 0;
+    static final int LADDER = 1;
+    static final int SNAKE = 2;
+
+    public static int playGame(int position) {
+
+        int dieNumber = (int) (Math.floor(Math.random() * 10) % 6) + 1;
+
+        int option = (int) (Math.floor(Math.random() * 10) % 3);
+
+        switch (option) {
+
+            case NO_PLAY:
+                break;
+
+            case LADDER:
+
+                if (position + dieNumber <= 100)
+                    position += dieNumber;
+
+                break;
+
+            case SNAKE:
+                position -= dieNumber;
+                break;
+        }
+
+        if (position < 0)
+            position = 0;
+
+        return position;
+    }
 
     public static void main(String[] args) {
 
-        int playerPosition = 0;
-        int count = 0;
+        int player1Position = 0;
+        int player2Position = 0;
 
-        while (playerPosition < 100) {
+        while (player1Position < 100 && player2Position < 100) {
 
-            count++;
+            player1Position = playGame(player1Position);
 
-            int dieNumber = (int) (Math.floor(Math.random() * 10) % 6) + 1;
-
-            int option = (int) (Math.floor(Math.random() * 10) % 3);
-
-            switch (option) {
-
-                case NO_PLAY:
-                    break;
-
-                case LADDER:
-
-                    if (playerPosition + dieNumber <= 100)
-                        playerPosition += dieNumber;
-
-                    break;
-
-                case SNAKE:
-                    playerPosition -= dieNumber;
-                    break;
+            if (player1Position == 100) {
+                System.out.println("Player 1 Won");
+                break;
             }
 
-            if (playerPosition < 0)
-                playerPosition = 0;
+            player2Position = playGame(player2Position);
 
-            System.out.println("Position after dice roll: " + playerPosition);
+            if (player2Position == 100) {
+                System.out.println("Player 2 Won");
+                break;
+            }
         }
-
-        System.out.println("Dice played: " + count);
     }
 }
