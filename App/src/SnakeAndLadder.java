@@ -7,8 +7,11 @@ public class SnakeAndLadder {
     public static void main(String[] args) {
 
         int playerPosition = 0;
+        int count = 0;
 
         while (playerPosition < 100) {
+
+            count++;
 
             int dieNumber = (int) (Math.floor(Math.random() * 10) % 6) + 1;
 
@@ -33,8 +36,10 @@ public class SnakeAndLadder {
 
             if (playerPosition < 0)
                 playerPosition = 0;
+
+            System.out.println("Position after dice roll: " + playerPosition);
         }
 
-        System.out.println("Player won the game");
+        System.out.println("Dice played: " + count);
     }
 }
